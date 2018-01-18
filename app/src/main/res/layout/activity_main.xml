@@ -6,5 +6,9 @@
     android:layout_height="match_parent"
     tools:context="com.uoe.epcc.scc.epccscccluster.MainActivity">
 
+    <!-- Include Detail and Info fragments -->
+    <include layout="@layout/fragment_detail" />
+    <include layout="@layout/fragment_info" />
+
 
 </android.support.constraint.ConstraintLayout>
