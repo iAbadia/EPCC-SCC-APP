@@ -14,7 +14,7 @@
         layout="@layout/fragment_info" />
     -->
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/img_cluster"
         android:layout_width="350dp"
         android:layout_height="300dp"
         android:layout_marginBottom="8dp"
@@ -38,10 +38,10 @@
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/img_cluster"
+        app:layout_constraintEnd_toEndOf="@+id/img_cluster"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="@+id/imageView" />
+        app:layout_constraintStart_toStartOf="@+id/img_cluster" />
 
     <Button
         android:id="@+id/opt_chassis"
@@ -54,9 +54,9 @@
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintEnd_toEndOf="@+id/img_cluster"
+        app:layout_constraintStart_toStartOf="@+id/img_cluster"
+        app:layout_constraintTop_toBottomOf="@+id/img_cluster" />
 
     <Button
         android:id="@+id/opt_cooling"
@@ -68,8 +68,8 @@
         android:textAlignment="textEnd"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintEnd_toStartOf="@+id/img_cluster"
+        app:layout_constraintTop_toBottomOf="@+id/img_cluster" />
 
     <Button
         android:id="@+id/opt_network"
@@ -80,8 +80,8 @@
         android:text="NETWORK"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toEndOf="@+id/img_cluster"
+        app:layout_constraintTop_toBottomOf="@+id/img_cluster" />
 
     <Button
         android:id="@+id/opt_storage"
@@ -93,9 +93,9 @@
         android:text="STORAGE"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/img_cluster"
+        app:layout_constraintEnd_toStartOf="@+id/img_cluster"
+        app:layout_constraintTop_toTopOf="@+id/img_cluster"
         app:layout_constraintVertical_bias="0.502" />
 
     <Button
@@ -108,9 +108,9 @@
         android:text="GPU"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintBottom_toBottomOf="@+id/img_cluster"
+        app:layout_constraintStart_toEndOf="@+id/img_cluster"
+        app:layout_constraintTop_toTopOf="@+id/img_cluster" />
 
     <Button
         android:id="@+id/opt_memory"
@@ -124,8 +124,8 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/imageView" />
+        app:layout_constraintBottom_toTopOf="@+id/img_cluster"
+        app:layout_constraintEnd_toStartOf="@+id/img_cluster" />
 
     <Button
         android:id="@+id/opt_cpu"
@@ -138,8 +138,8 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/imageView" />
+        app:layout_constraintBottom_toTopOf="@+id/img_cluster"
+        app:layout_constraintStart_toEndOf="@+id/img_cluster" />
 
 
 </android.support.constraint.ConstraintLayout>
