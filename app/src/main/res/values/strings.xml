@@ -1,6 +1,13 @@
 <resources>
-    <string name="app_name">EPCC SCC Cluster</string>
+    <string name="app_name" translatable="false">EPCC SCC Cluster</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_the_team">THE TEAM</string>
+    <string name="str_chassis">CHASSIS</string>
+    <string name="str_cooling">COOLING</string>
+    <string name="str_network">NETWORK</string>
+    <string name="str_storage">STORAGE</string>
+    <string name="str_gpu">GPU</string>
+    <string name="str_memory">MEMORY</string>
+    <string name="str_cpu">CPU</string>
 </resources>

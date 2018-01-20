@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EPCC SCC Cluster</string>
+    <string name="str_chassis">CHASIS</string>
+    <string name="str_cooling">REFRIGERACIÓN</string>
+    <string name="str_cpu">CPU</string>
+    <string name="str_gpu">GPU</string>
+    <string name="str_memory">MEMORIA</string>
+    <string name="str_network">RED</string>
+    <string name="str_storage">ALMACENAMIENTO</string>
+    <string name="str_the_team">EL EQUIPO</string>
+</resources>

@@ -6,13 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.uoe.epcc.scc.epccscccluster.MainActivity">
 
-    <!-- Include Detail and Info fragments
-    <include
-        layout="@layout/fragment_detail" />
-
-    <include
-        layout="@layout/fragment_info" />
-    -->
     <ImageView
         android:id="@+id/img_cluster"
         android:layout_width="350dp"
@@ -34,7 +27,7 @@
         android:layout_marginBottom="96dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="THE TEAM"
+        android:text="@string/str_the_team"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -50,7 +43,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="96dp"
-        android:text="CHASSIS"
+        android:text="@string/str_chassis"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -64,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginTop="32dp"
-        android:text="COOLING"
+        android:text="@string/str_cooling"
         android:textAlignment="textEnd"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -77,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="NETWORK"
+        android:text="@string/str_network"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/img_cluster"
@@ -90,7 +83,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginTop="8dp"
-        android:text="STORAGE"
+        android:text="@string/str_storage"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/img_cluster"
@@ -105,7 +98,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:text="GPU"
+        android:text="@string/str_gpu"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/img_cluster"
@@ -119,7 +112,7 @@
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="32dp"
         android:fontFamily="sans-serif"
-        android:text="MEMORY"
+        android:text="@string/str_memory"
         android:textAlignment="textEnd"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -134,7 +127,7 @@
         android:layout_marginBottom="32dp"
         android:layout_marginStart="32dp"
         android:fontFamily="sans-serif"
-        android:text="CPU"
+        android:text="@string/str_cpu"
         android:textSize="30sp"
         android:textStyle="bold"
         android:typeface="monospace"
