@@ -1,14 +1,23 @@
 package com.uoe.epcc.scc.epccscccluster
 
-import android.support.v7.app.AppCompatActivity
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Load locale
+        loadLocale()
+
+        // Load layout
         setContentView(R.layout.activity_main)
 
         // Enter immersive mode
@@ -26,7 +35,12 @@ class MainActivity : AppCompatActivity() {
 
         // DEBUG. Register show options onClick for image
         img_cluster.setOnClickListener { showAllOptions() }
+
+        // Set onClick for Lang buttons
+        btn_locale_en.setOnClickListener { updateLang(Language.ENG) }
+        btn_locale_es.setOnClickListener { updateLang(Language.ESP) }
     }
+
     /**
      * Enter Immersive mode. Hides status and navigation bars, both
      * will be still reachable by swiping up/down on the edge of the
@@ -34,11 +48,28 @@ class MainActivity : AppCompatActivity() {
      * */
     private fun hideSystemUI() {
         window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-            or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-            or View.SYSTEM_UI_FLAG_FULLSCREEN
-            or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+    }
+
+    /**
+     * Load correct language
+     * */
+    private fun loadLocale() {
+        // Get language from SharedPreferences
+        val languagepref = getSharedPreferences("language", Context.MODE_PRIVATE)
+        val lang = languagepref.getString("languageToLoad", "en")
+
+        // Set locale
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        baseContext.resources.updateConfiguration(config,
+                baseContext.resources.displayMetrics)
     }
 
     /**
@@ -78,7 +109,44 @@ class MainActivity : AppCompatActivity() {
         opt_memory.visibility = View.VISIBLE
     }
 
-    enum class Option {
-        TEAM, CPU, GPU, NETWORK, CHASSIS, COOLING, STORAGE, MEMORY
+    /**
+     * Change app language
+     * */
+    private fun updateLang(lang: Language) {
+        // Choose language locale
+        val languageToLoad = when (lang) {
+            Language.ENG -> "en"
+            Language.ESP -> "es"
+        }
+
+        // Load SharedPreferences
+        val languagepref = getSharedPreferences("language", Context.MODE_PRIVATE)
+
+        // Check if we really need to update language
+        if (languagepref.getString("languageToLoad", "") != languageToLoad) {
+            // Change locale
+            val locale = Locale(languageToLoad)
+            Locale.setDefault(locale)
+            val config = Configuration()
+            config.locale = locale
+            baseContext.resources.updateConfiguration(config,
+                    baseContext.resources.displayMetrics)
+
+            // Save to SharedPreferences
+
+            val editor = languagepref.edit()
+            editor.putString("languageToLoad", languageToLoad)
+            editor.commit()
+
+            // Realod activity
+            finish()
+            startActivity(intent)
+        }
+
+
     }
+
+
+    enum class Option { TEAM, CPU, GPU, NETWORK, CHASSIS, COOLING, STORAGE, MEMORY }
+    enum class Language { ENG, ESP }
 }
