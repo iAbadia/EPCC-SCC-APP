@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">EPCC SCC Cluster</string>
+    <string name="str_the_team">TIM</string>
+    <string name="str_chassis">CASIS</string>
+    <string name="str_cooling">PENDINGINAN</string>
+    <string name="str_network">JARINGAN</string>
+    <string name="str_storage">PENYIMPANAN</string>
+    <string name="str_gpu">GPU</string>
+    <string name="str_memory">INGATAN</string>
     <string name="str_cpu">CPU</string>
 </resources>
