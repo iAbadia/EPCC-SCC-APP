@@ -139,22 +139,58 @@
         android:id="@+id/btn_locale_en"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/locale_en"
         android:elevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_locale_es" />
+        app:layout_constraintEnd_toStartOf="@+id/btn_locale_es"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_locale_es"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/locale_es"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fab_menu"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/locale_es"
+        android:backgroundTint="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu_colorNormal="@android:color/transparent"
+        app:menu_colorPressed="@android:color/transparent"
+        app:menu_icon="@mipmap/locale_en_56dp">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_item_1"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/locale_es_56dp" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_item_2"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/locale_el_56dp" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_item_3"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/locale_in_56dp" />
+
+    </com.github.clans.fab.FloatingActionMenu>
 
     <include
         android:id="@+id/frg_info_view"

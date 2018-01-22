@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         // Set onClick for Lang buttons
         btn_locale_en.setOnClickListener { updateLang(Language.ENG) }
         btn_locale_es.setOnClickListener { updateLang(Language.ESP) }
+
     }
 
     /**
