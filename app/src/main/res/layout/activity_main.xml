@@ -136,8 +136,8 @@
 
     <Button
         android:id="@+id/btn_locale_en"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/locale_en"
@@ -147,8 +147,8 @@
 
     <Button
         android:id="@+id/btn_locale_es"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/locale_es"
