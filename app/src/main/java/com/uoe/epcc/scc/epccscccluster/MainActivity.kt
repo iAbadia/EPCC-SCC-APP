@@ -2,8 +2,10 @@ package com.uoe.epcc.scc.epccscccluster
 
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Point
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -34,7 +36,21 @@ class MainActivity : AppCompatActivity() {
         opt_memory.setOnClickListener { showDetail(Option.MEMORY) }
 
         // DEBUG. Register show options onClick for image
-        img_cluster.setOnClickListener { showAllOptions() }
+        //img_cluster.setOnClickListener { showAllOptions() }
+        img_cluster.setOnClickListener {
+            // Get screen size
+            val display = windowManager.defaultDisplay
+            val size = Point()
+            display.getRealSize(size)
+            Log.i("OnClick", "Screen size is: x = ${size.x} and y = ${size.y}")
+
+            // Set visible but flat (width = 0dp)
+            frg_info_view.visibility = View.VISIBLE
+
+            // Give it 1/3 of screen width
+            frg_info_view.layoutParams.width = size.x / 3
+            frg_info_view.requestLayout()
+        }
 
         // Set onClick for Lang buttons
         btn_locale_en.setOnClickListener { updateLang(Language.ENG) }
