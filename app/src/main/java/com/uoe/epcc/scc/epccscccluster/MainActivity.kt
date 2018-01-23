@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import com.bumptech.glide.Glide
 import com.github.clans.fab.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.detail_view.*
 import java.util.*
 
 
@@ -19,6 +21,9 @@ class MainActivity : AppCompatActivity() {
 
         // Load layout
         setContentView(R.layout.activity_main)
+
+        // Load server image
+        Glide.with(this).load(R.drawable.sample_server).into(img_cluster)
 
         // Load locale
         loadLocale()
@@ -36,10 +41,11 @@ class MainActivity : AppCompatActivity() {
         opt_storage.setOnClickListener { showDetail(Option.STORAGE) }
         opt_memory.setOnClickListener { showDetail(Option.MEMORY) }
 
-        // DEBUG. Register show options onClick for image
-        img_cluster.setOnClickListener {
+        // Set onClick for Detail view
+        frg_detail_view.setOnClickListener {
             // Disable overlay
             frg_info_view.visibility = View.GONE
+            frg_detail_view.visibility = View.GONE
             showAllOptions()
         }
 
@@ -128,7 +134,6 @@ class MainActivity : AppCompatActivity() {
     private fun showDetail(opt: Option) {
         // Hide all buttons
         hideAllOptions()
-        // TODO Decide what layout to inflate based on opt
 
         // Get screen size
         val display = windowManager.defaultDisplay
@@ -138,10 +143,16 @@ class MainActivity : AppCompatActivity() {
 
         // Set visible but flat (width = 0dp)
         frg_info_view.visibility = View.VISIBLE
+        frg_detail_view.visibility = View.VISIBLE
+
+        // Load image into detail view
+        Glide.with(this).load(R.drawable.sample_server).into(detail_image)
 
         // Give it 1/3 of screen width
         frg_info_view.layoutParams.width = size.x / 3
+        frg_detail_view.layoutParams.width = size.x * 2 / 3
         frg_info_view.requestLayout()
+        frg_detail_view.requestLayout()
     }
 
     /**

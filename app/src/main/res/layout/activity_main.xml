@@ -18,8 +18,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sample_server" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/opt_team"
@@ -174,6 +173,15 @@
             android:tag="in" />
 
     </com.github.clans.fab.FloatingActionMenu>
+
+    <include
+        android:id="@+id/frg_detail_view"
+        layout="@layout/detail_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <include
         android:id="@+id/frg_info_view"
