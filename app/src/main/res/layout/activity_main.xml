@@ -163,6 +163,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@android:color/transparent"
+        android:tag="en"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:menu_colorNormal="@android:color/transparent"
@@ -174,21 +175,24 @@
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:scaleType="fitCenter"
-            android:src="@mipmap/locale_es_56dp" />
+            android:src="@mipmap/locale_es_56dp"
+            android:tag="es" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_item_2"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:scaleType="fitCenter"
-            android:src="@mipmap/locale_el_56dp" />
+            android:src="@mipmap/locale_el_56dp"
+            android:tag="el" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_item_3"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:scaleType="fitCenter"
-            android:src="@mipmap/locale_in_56dp" />
+            android:src="@mipmap/locale_in_56dp"
+            android:tag="in" />
 
     </com.github.clans.fab.FloatingActionMenu>
 

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import com.github.clans.fab.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -16,11 +17,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Load locale
-        loadLocale()
-
         // Load layout
         setContentView(R.layout.activity_main)
+
+        // Load locale
+        loadLocale()
 
         // Enter immersive mode
         hideSystemUI()
@@ -53,9 +54,23 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Set onClick for Lang buttons
-        btn_locale_en.setOnClickListener { updateLang(Language.ENG) }
-        btn_locale_es.setOnClickListener { updateLang(Language.ESP) }
+        //btn_locale_en.setOnClickListener { updateLang(Language.EN) }
+        //btn_locale_es.setOnClickListener { updateLang(Language.ES) }
+        btn_locale_en.visibility = View.GONE
+        btn_locale_es.visibility = View.GONE
 
+        fab_item_1.setOnClickListener { updateFAB(it as FloatingActionButton) }
+        fab_item_2.setOnClickListener { updateFAB(it as FloatingActionButton) }
+        fab_item_3.setOnClickListener { updateFAB(it as FloatingActionButton) }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Load locale
+        loadLocale()
+        // Enter immersive mode
+        hideSystemUI()
     }
 
     /**
@@ -78,7 +93,16 @@ class MainActivity : AppCompatActivity() {
     private fun loadLocale() {
         // Get language from SharedPreferences
         val languagepref = getSharedPreferences("language", Context.MODE_PRIVATE)
-        val lang = languagepref.getString("languageToLoad", "en")
+
+        // Check if language preferences have been initialized
+        if (languagepref.getString("languageToLoad", null) == null)
+            initializeLangPrefs()
+
+        // Get language preferences
+        val lang = languagepref.getString("languageToLoad", null)
+        val l1 = languagepref.getString("languageToLoad_1", null)
+        val l2 = languagepref.getString("languageToLoad_2", null)
+        val l3 = languagepref.getString("languageToLoad_3", null)
 
         // Set locale
         val locale = Locale(lang)
@@ -87,6 +111,30 @@ class MainActivity : AppCompatActivity() {
         config.locale = locale
         baseContext.resources.updateConfiguration(config,
                 baseContext.resources.displayMetrics)
+
+        // Update FAB (assign img src and tag correctly)
+        fab_menu.menuIconView.setImageResource(localeToResource(lang))
+        fab_menu.tag = lang
+        fab_item_1.setImageResource(localeToResource(l1))
+        fab_item_1.tag = l1
+        fab_item_2.setImageResource(localeToResource(l2))
+        fab_item_2.tag = l2
+        fab_item_3.setImageResource(localeToResource(l3))
+        fab_item_3.tag = l3
+    }
+
+    /**
+     * Initialize language-related SharedPreferences
+     * */
+    private fun initializeLangPrefs() {
+        val languagepref = getSharedPreferences("language", Context.MODE_PRIVATE)
+        // Save to SharedPreferences
+        val editor = languagepref.edit()
+        editor.putString("languageToLoad", Language.EN.lang)
+        editor.putString("languageToLoad_1", Language.ES.lang)
+        editor.putString("languageToLoad_2", Language.EL.lang)
+        editor.putString("languageToLoad_3", Language.IN.lang)
+        editor.commit()
     }
 
     /**
@@ -129,20 +177,14 @@ class MainActivity : AppCompatActivity() {
     /**
      * Change app language
      * */
-    private fun updateLang(lang: Language) {
-        // Choose language locale
-        val languageToLoad = when (lang) {
-            Language.ENG -> "en"
-            Language.ESP -> "es"
-        }
-
+    private fun updateLang(lang: String, old: String) {
         // Load SharedPreferences
         val languagepref = getSharedPreferences("language", Context.MODE_PRIVATE)
 
         // Check if we really need to update language
-        if (languagepref.getString("languageToLoad", "") != languageToLoad) {
+        if (languagepref.getString("languageToLoad", "") != lang) {
             // Change locale
-            val locale = Locale(languageToLoad)
+            val locale = Locale(lang)
             Locale.setDefault(locale)
             val config = Configuration()
             config.locale = locale
@@ -150,20 +192,59 @@ class MainActivity : AppCompatActivity() {
                     baseContext.resources.displayMetrics)
 
             // Save to SharedPreferences
-
             val editor = languagepref.edit()
-            editor.putString("languageToLoad", languageToLoad)
+            editor.putString("languageToLoad", lang)
+            // Save the old lang
+            for (pref in languagepref.all) {
+                if (pref.value == lang) {
+                    editor.putString(pref.key, old)
+                }
+            }
+            // Commit changes
             editor.commit()
 
             // Realod activity
             finish()
             startActivity(intent)
         }
+    }
 
+    /**
+     * Update FAB options and language
+     * */
+    private fun updateFAB(view: FloatingActionButton) {
+        // Save current locale
+        val saveLocale = fab_menu.tag.toString()
 
+        // Set fab_menu tag and resource
+        fab_menu.tag = view.tag.toString()
+        fab_menu.menuIconView.setImageResource(localeToResource(view.tag.toString()))
+
+        // Set view tag and resource
+        view.tag = saveLocale
+        view.setImageResource(localeToResource(saveLocale))
+
+        // Collapse FAB
+        fab_menu.close(true)
+
+        // Update language
+        updateLang(fab_menu.tag.toString(), view.tag.toString())
+    }
+
+    /**
+     * Return the resource that matches the received locale code
+     * */
+    private fun localeToResource(lang: String): Int {
+        return when (lang) {
+            Language.EN.lang -> R.mipmap.locale_en_56dp
+            Language.ES.lang -> R.mipmap.locale_es_56dp
+            Language.EL.lang -> R.mipmap.locale_el_56dp
+            Language.IN.lang -> R.mipmap.locale_in_56dp
+            else -> R.mipmap.locale_en_56dp
+        }
     }
 
 
     enum class Option { TEAM, CPU, GPU, NETWORK, CHASSIS, COOLING, STORAGE, MEMORY }
-    enum class Language { ENG, ESP }
+    enum class Language(val lang: String) { EN("en"), ES("es"), IN("in"), EL("el") }
 }
