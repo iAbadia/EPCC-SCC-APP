@@ -37,28 +37,13 @@ class MainActivity : AppCompatActivity() {
         opt_memory.setOnClickListener { showDetail(Option.MEMORY) }
 
         // DEBUG. Register show options onClick for image
-        //img_cluster.setOnClickListener { showAllOptions() }
         img_cluster.setOnClickListener {
-            // Get screen size
-            val display = windowManager.defaultDisplay
-            val size = Point()
-            display.getRealSize(size)
-            Log.i("OnClick", "Screen size is: x = ${size.x} and y = ${size.y}")
-
-            // Set visible but flat (width = 0dp)
-            frg_info_view.visibility = View.VISIBLE
-
-            // Give it 1/3 of screen width
-            frg_info_view.layoutParams.width = size.x / 3
-            frg_info_view.requestLayout()
+            // Disable overlay
+            frg_info_view.visibility = View.GONE
+            showAllOptions()
         }
 
         // Set onClick for Lang buttons
-        //btn_locale_en.setOnClickListener { updateLang(Language.EN) }
-        //btn_locale_es.setOnClickListener { updateLang(Language.ES) }
-        btn_locale_en.visibility = View.GONE
-        btn_locale_es.visibility = View.GONE
-
         fab_item_1.setOnClickListener { updateFAB(it as FloatingActionButton) }
         fab_item_2.setOnClickListener { updateFAB(it as FloatingActionButton) }
         fab_item_3.setOnClickListener { updateFAB(it as FloatingActionButton) }
@@ -144,6 +129,19 @@ class MainActivity : AppCompatActivity() {
         // Hide all buttons
         hideAllOptions()
         // TODO Decide what layout to inflate based on opt
+
+        // Get screen size
+        val display = windowManager.defaultDisplay
+        val size = Point()
+        display.getRealSize(size)
+        Log.i("OnClick", "Screen size is: x = ${size.x} and y = ${size.y}")
+
+        // Set visible but flat (width = 0dp)
+        frg_info_view.visibility = View.VISIBLE
+
+        // Give it 1/3 of screen width
+        frg_info_view.layoutParams.width = size.x / 3
+        frg_info_view.requestLayout()
     }
 
     /**
@@ -158,12 +156,15 @@ class MainActivity : AppCompatActivity() {
         opt_cooling.visibility = View.GONE
         opt_storage.visibility = View.GONE
         opt_memory.visibility = View.GONE
+
+        fab_menu.visibility = View.GONE
     }
 
     /**
      * Show all Options buttons
      * */
     private fun showAllOptions() {
+        // Enable options button
         opt_team.visibility = View.VISIBLE
         opt_cpu.visibility = View.VISIBLE
         opt_gpu.visibility = View.VISIBLE
@@ -172,6 +173,9 @@ class MainActivity : AppCompatActivity() {
         opt_cooling.visibility = View.VISIBLE
         opt_storage.visibility = View.VISIBLE
         opt_memory.visibility = View.VISIBLE
+
+        // Disable lang buttons
+        fab_menu.visibility = View.VISIBLE
     }
 
     /**
@@ -205,7 +209,9 @@ class MainActivity : AppCompatActivity() {
 
             // Realod activity
             finish()
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
             startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
     }
 
