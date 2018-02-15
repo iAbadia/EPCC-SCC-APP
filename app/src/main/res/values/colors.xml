@@ -7,5 +7,10 @@
     <color name="red">#FF4136</color>
     <color name="blue">#0074D9</color>
 
+    <color name="epccOrange">#f25d00</color>
+    <color name="epccBlue">#004886</color>
+
+    <color name="darkBg">#141414</color>
+
 
 </resources>

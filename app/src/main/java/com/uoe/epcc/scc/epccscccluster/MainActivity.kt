@@ -19,14 +19,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Load locale
+        loadLocale()
+
         // Load layout
         setContentView(R.layout.activity_main)
 
+        // Load Lang FAV
+        loadFAV()
+
         // Load server image
         Glide.with(this).load(R.drawable.sample_server).into(img_cluster)
-
-        // Load locale
-        loadLocale()
 
         // Enter immersive mode
         hideSystemUI()
@@ -81,7 +84,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Load correct language
      * */
-    private fun loadLocale() {
+    inline private fun loadLocale() {
         // Get language from SharedPreferences
         val languagepref = getSharedPreferences("language", Context.MODE_PRIVATE)
 
@@ -102,6 +105,20 @@ class MainActivity : AppCompatActivity() {
         config.locale = locale
         baseContext.resources.updateConfiguration(config,
                 baseContext.resources.displayMetrics)
+    }
+
+    /**
+     * Load Lang FAV images correctly
+     * */
+    private fun loadFAV() {
+        // Get language from SharedPreferences
+        val languagepref = getSharedPreferences("language", Context.MODE_PRIVATE)
+
+        // Get language preferences
+        val lang = languagepref.getString("languageToLoad", null)
+        val l1 = languagepref.getString("languageToLoad_1", null)
+        val l2 = languagepref.getString("languageToLoad_2", null)
+        val l3 = languagepref.getString("languageToLoad_3", null)
 
         // Update FAB (assign img src and tag correctly)
         fab_menu.menuIconView.setImageResource(localeToResource(lang))
