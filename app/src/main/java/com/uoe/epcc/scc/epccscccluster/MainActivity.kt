@@ -10,7 +10,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.github.clans.fab.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.detail_view.*
+import kotlinx.android.synthetic.main.info_view.view.*
 import java.util.*
 
 
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Load correct language
      * */
-    inline private fun loadLocale() {
+    private fun loadLocale() {
         // Get language from SharedPreferences
         val languagepref = getSharedPreferences("language", Context.MODE_PRIVATE)
 
@@ -94,9 +94,6 @@ class MainActivity : AppCompatActivity() {
 
         // Get language preferences
         val lang = languagepref.getString("languageToLoad", null)
-        val l1 = languagepref.getString("languageToLoad_1", null)
-        val l2 = languagepref.getString("languageToLoad_2", null)
-        val l3 = languagepref.getString("languageToLoad_3", null)
 
         // Set locale
         val locale = Locale(lang)
@@ -163,13 +160,37 @@ class MainActivity : AppCompatActivity() {
         frg_detail_view.visibility = View.VISIBLE
 
         // Load image into detail view
-        Glide.with(this).load(R.drawable.sample_server).into(detail_image)
+        //Glide.with(this).load(R.drawable.sample_server).into(detail_image)
 
         // Give it 1/3 of screen width
-        frg_info_view.layoutParams.width = size.x / 3
+        frg_info_view.layoutParams.width = size.x / 3 + size.x % 3
         frg_detail_view.layoutParams.width = size.x * 2 / 3
         frg_info_view.requestLayout()
         frg_detail_view.requestLayout()
+
+        // Load INFO Title
+        frg_info_view.txt_info_title.text = when(opt) {
+            Option.TEAM -> resources.getText(R.string.str_the_team)
+            Option.CPU -> resources.getString(R.string.str_cpu)
+            Option.GPU -> resources.getString(R.string.str_gpu)
+            Option.NETWORK -> resources.getString(R.string.str_network)
+            Option.CHASSIS -> resources.getString(R.string.str_chassis)
+            Option.COOLING -> resources.getString(R.string.str_cooling)
+            Option.STORAGE -> resources.getString(R.string.str_storage)
+            Option.MEMORY -> resources.getString(R.string.str_memory)
+        }
+
+        // Load INFO Description
+        frg_info_view.txt_info_description.text = when(opt) {
+            Option.TEAM -> resources.getText(R.string.info_team)
+            Option.CPU -> resources.getString(R.string.info_cpu)
+            Option.GPU -> resources.getString(R.string.info_gpu)
+            Option.NETWORK -> resources.getString(R.string.info_network)
+            Option.CHASSIS -> resources.getString(R.string.info_chassis)
+            Option.COOLING -> resources.getString(R.string.info_cooling)
+            Option.STORAGE -> resources.getString(R.string.info_storage)
+            Option.MEMORY -> resources.getString(R.string.info_memory)
+        }
     }
 
     /**

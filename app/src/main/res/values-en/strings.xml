@@ -9,4 +9,5 @@
     <string name="str_network">NETWORK</string>
     <string name="str_storage">STORAGE</string>
     <string name="str_the_team">THE TEAM</string>
+    <string name="info_team"><font color="#f25d00">TeamEPCC</font> consists of four students currently enrolled in the <font color="#f25d00">MSc in High Performance Computing</font> or <font color="#f25d00">MSc in HPC with Data Science</font>, at The University of Edinburgh. Our team is directly trained by members of EPCC staff, which our couch is also a member of. Our industry partner, <font color="#f25d00">Boston Limited</font>, provides us support and hardware. EPCC has confirmation from the HPC Advisory Council that EPCC’s postgraduate students are eligible to participate in the competition.</string>
 </resources>

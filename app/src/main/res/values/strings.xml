@@ -10,4 +10,12 @@
     <string name="str_gpu">GPU</string>
     <string name="str_memory">MEMORY</string>
     <string name="str_cpu">CPU</string>
+    <string name="info_team"><span style="color:#f2f2f2;">TeamEPCC</span> consists of four students currently enrolled in the MSc in High Performance Computing or MSc in HPC with Data Science, at The University of Edinburgh. Our team is directly trained by members of EPCC staff, which our couch is also a member of. Our industry partner, Boston Limited, provides us support and hardware. EPCC has confirmation from the HPC Advisory Council that EPCC’s postgraduate students are eligible to participate in the competition.</string>
+    <string name="info_cpu">CPU</string>
+    <string name="info_gpu">GPU</string>
+    <string name="info_network">NETWORK</string>
+    <string name="info_chassis">CHASSIS</string>
+    <string name="info_cooling">COOLING</string>
+    <string name="info_storage">STORAGE</string>
+    <string name="info_memory">MEMORY</string>
 </resources>

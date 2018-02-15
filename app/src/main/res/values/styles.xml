@@ -9,12 +9,20 @@
     </style>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar.FullScreen">
+    <style name="AppTheme.Dark" parent="Theme.AppCompat.Light.NoActionBar.FullScreen">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/epccBlue</item>
+        <item name="colorPrimaryDark">@color/epccDarkBlue</item>
+        <item name="colorAccent">@color/epccOrange</item>
         <item name="android:colorBackground">@color/darkBg</item>
+    </style>
+
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light.NoActionBar.FullScreen">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/epccBlue</item>
+        <item name="colorPrimaryDark">@color/epccDarkBlue</item>
+        <item name="colorAccent">@color/epccOrange</item>
+        <item name="android:colorBackground">@color/lightBg</item>
     </style>
 
 </resources>
