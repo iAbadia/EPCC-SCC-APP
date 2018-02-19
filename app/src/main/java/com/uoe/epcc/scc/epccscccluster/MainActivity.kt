@@ -10,6 +10,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.github.clans.fab.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.detail_view.*
 import kotlinx.android.synthetic.main.info_view.view.*
 import java.util.*
 
@@ -159,14 +160,24 @@ class MainActivity : AppCompatActivity() {
         frg_info_view.visibility = View.VISIBLE
         frg_detail_view.visibility = View.VISIBLE
 
-        // Load image into detail view
-        //Glide.with(this).load(R.drawable.sample_server).into(detail_image)
-
         // Give it 1/3 of screen width
-        frg_info_view.layoutParams.width = size.x / 3 + size.x % 3
-        frg_detail_view.layoutParams.width = size.x * 2 / 3
+        frg_info_view.layoutParams.width = size.x * 2 / 5 + size.x % 5
+        frg_detail_view.layoutParams.width = size.x * 3 / 5
         frg_info_view.requestLayout()
         frg_detail_view.requestLayout()
+
+        // Load DETAIL Image
+        when(opt) {
+            Option.TEAM -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
+            Option.CPU -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
+            Option.GPU -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
+            Option.NETWORK -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
+            Option.CHASSIS -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
+            Option.COOLING -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
+            Option.STORAGE -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
+            Option.MEMORY -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
+        }
+
 
         // Load INFO Title
         frg_info_view.txt_info_title.text = when(opt) {
