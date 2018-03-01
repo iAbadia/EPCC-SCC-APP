@@ -13,6 +13,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.detail_view.*
 import kotlinx.android.synthetic.main.info_view.view.*
 import java.util.*
+import android.animation.ValueAnimator
+
+
+
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -51,6 +58,10 @@ class MainActivity : AppCompatActivity() {
             frg_info_view.visibility = View.GONE
             frg_detail_view.visibility = View.GONE
             showAllOptions()
+
+            // Disable blur
+            // Activate blur layer
+            blurLayout.visibility = View.GONE
         }
 
         // Set onClick for Lang buttons
@@ -149,6 +160,17 @@ class MainActivity : AppCompatActivity() {
     private fun showDetail(opt: Option) {
         // Hide all buttons
         hideAllOptions()
+
+        val va = ValueAnimator.ofInt(1, 12)
+        val mDuration = 250 //in millis
+        va.duration = mDuration.toLong()
+        va.addUpdateListener { animation -> blurLayout.setBlurRadius(animation.animatedValue as Int) }
+        va.repeatCount = 0
+        va.start()
+
+        // Activate blur layer
+        blurLayout.visibility = View.VISIBLE
+
 
         // Get screen size
         val display = windowManager.defaultDisplay

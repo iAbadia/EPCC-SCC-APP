@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.uoe.epcc.scc.epccscccluster.MainActivity">
 
+
     <ImageView
         android:id="@+id/img_cluster"
         android:layout_width="350dp"
@@ -174,24 +175,41 @@
 
     </com.github.clans.fab.FloatingActionMenu>
 
-    <include
-        android:id="@+id/frg_detail_view"
-        layout="@layout/detail_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <include
-        android:id="@+id/frg_info_view"
-        layout="@layout/info_view"
+    <com.wonderkiln.blurkit.BlurLayout
+        android:id="@+id/blurLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/frg_detail_view"
+                layout="@layout/detail_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/frg_info_view"
+                layout="@layout/info_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+    </com.wonderkiln.blurkit.BlurLayout>
 
 
 </android.support.constraint.ConstraintLayout>
