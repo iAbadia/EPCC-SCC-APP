@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EPCC-SCC-APP.iml" filepath="$PROJECT_DIR$/EPCC-SCC-APP.iml" />
-      <module fileurl="file://$PROJECT_DIR$/EPCCSCCCluster.iml" filepath="$PROJECT_DIR$/EPCCSCCCluster.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

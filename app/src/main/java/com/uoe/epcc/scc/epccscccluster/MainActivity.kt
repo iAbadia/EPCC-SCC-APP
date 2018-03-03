@@ -1,5 +1,6 @@
 package com.uoe.epcc.scc.epccscccluster
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Point
@@ -14,6 +15,9 @@ import kotlinx.android.synthetic.main.detail_view.*
 import kotlinx.android.synthetic.main.info_view.view.*
 import java.util.*
 import android.animation.ValueAnimator
+import android.view.ViewGroup
+
+
 
 
 
@@ -53,16 +57,7 @@ class MainActivity : AppCompatActivity() {
         opt_memory.setOnClickListener { showDetail(Option.MEMORY) }
 
         // Set onClick for Detail view
-        frg_detail_view.setOnClickListener {
-            // Disable overlay
-            frg_info_view.visibility = View.GONE
-            frg_detail_view.visibility = View.GONE
-            showAllOptions()
-
-            // Disable blur
-            // Activate blur layer
-            blurLayout.visibility = View.GONE
-        }
+        frg_detail_view.setOnClickListener {hideDetail()}
 
         // Set onClick for Lang buttons
         fab_item_1.setOnClickListener { updateFAB(it as FloatingActionButton) }
@@ -159,18 +154,17 @@ class MainActivity : AppCompatActivity() {
      * */
     private fun showDetail(opt: Option) {
         // Hide all buttons
-        hideAllOptions()
+        //hideAllOptions()
 
+        // Blur BG animate
         val va = ValueAnimator.ofInt(1, 12)
         val mDuration = 250 //in millis
         va.duration = mDuration.toLong()
         va.addUpdateListener { animation -> blurLayout.setBlurRadius(animation.animatedValue as Int) }
         va.repeatCount = 0
         va.start()
-
         // Activate blur layer
         blurLayout.visibility = View.VISIBLE
-
 
         // Get screen size
         val display = windowManager.defaultDisplay
@@ -182,11 +176,20 @@ class MainActivity : AppCompatActivity() {
         frg_info_view.visibility = View.VISIBLE
         frg_detail_view.visibility = View.VISIBLE
 
+
         // Give it 1/3 of screen width
         frg_info_view.layoutParams.width = size.x * 2 / 5 + size.x % 5
         frg_detail_view.layoutParams.width = size.x * 3 / 5
         frg_info_view.requestLayout()
         frg_detail_view.requestLayout()
+
+        // Animate (Slide in)
+        frg_info_view.translationX = (size.x * 2 / 5 + size.x % 5).toFloat()
+        frg_info_view.animate().translationX(0F)
+
+        frg_detail_view.translationX = -(size.x * 3 / 5).toFloat()
+        frg_detail_view.animate().translationX(0F)
+
 
         // Load DETAIL Image
         when(opt) {
@@ -224,6 +227,39 @@ class MainActivity : AppCompatActivity() {
             Option.STORAGE -> resources.getString(R.string.info_storage)
             Option.MEMORY -> resources.getString(R.string.info_memory)
         }
+    }
+
+    /**
+     * Show detail for given Option
+     * */
+    private fun hideDetail() {
+        // Get screen size
+        val display = windowManager.defaultDisplay
+        val size = Point()
+        display.getRealSize(size)
+        Log.i("OnClick", "Screen size is: x = ${size.x} and y = ${size.y}")
+
+        // Animate slide out
+        //frg_info_view.animate().translationX((size.x * 2 / 5 + size.x % 5).toFloat())//.withEndAction { frg_info_view.visibility = View.GONE }
+        //frg_detail_view.animate().translationX(-(size.x * 3 / 5).toFloat())//.withEndAction { frg_detail_view.visibility = View.GONE }
+        frg_info_view.animate().translationX((size.x * 2 / 5 + size.x % 5).toFloat())
+        frg_detail_view.animate().translationX(-(size.x * 3 / 5).toFloat())
+
+        // Disable overlay
+        //frg_info_view.visibility = View.GONE
+        //frg_detail_view.visibility = View.GONE
+        //showAllOptions()
+
+        // Disable blur
+        val va = ValueAnimator.ofInt(12, 1)
+        val mDuration = 250 //in millis
+        va.duration = mDuration.toLong()
+        va.addUpdateListener {
+            animation -> blurLayout.setBlurRadius(animation.animatedValue as Int)
+                         if(animation.animatedValue as Int == 1){ blurLayout.visibility = View.GONE }
+        }
+        va.repeatCount = 0
+        va.start()
     }
 
     /**
