@@ -5,213 +5,234 @@
     android:id="@+id/lyt_main_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@drawable/ic_bg"
     tools:context="com.uoe.epcc.scc.epccscccluster.MainActivity">
 
-
-    <ImageView
-        android:id="@+id/img_cluster"
-        android:layout_width="175dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/opt_team"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/str_the_team"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/img_cluster"
-        app:layout_constraintEnd_toEndOf="@+id/img_cluster"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="@+id/img_cluster" />
-
-    <Button
-        android:id="@+id/opt_chassis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="72dp"
-        android:text="@string/str_chassis"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/img_cluster"
-        app:layout_constraintStart_toStartOf="@+id/img_cluster"
-        app:layout_constraintTop_toBottomOf="@+id/img_cluster" />
-
-    <Button
-        android:id="@+id/opt_cooling"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/str_cooling"
-        android:textAlignment="textEnd"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/img_cluster"
-        app:layout_constraintTop_toBottomOf="@+id/img_cluster" />
-
-    <Button
-        android:id="@+id/opt_network"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/str_network"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/img_cluster"
-        app:layout_constraintTop_toBottomOf="@+id/img_cluster" />
-
-    <Button
-        android:id="@+id/opt_storage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/str_storage"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/img_cluster"
-        app:layout_constraintEnd_toStartOf="@+id/img_cluster"
-        app:layout_constraintTop_toTopOf="@+id/img_cluster"
-        app:layout_constraintVertical_bias="0.502" />
-
-    <Button
-        android:id="@+id/opt_gpu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/str_gpu"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/img_cluster"
-        app:layout_constraintStart_toEndOf="@+id/img_cluster"
-        app:layout_constraintTop_toTopOf="@+id/img_cluster" />
-
-    <Button
-        android:id="@+id/opt_memory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/str_memory"
-        android:textAlignment="textEnd"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/img_cluster"
-        app:layout_constraintEnd_toStartOf="@+id/img_cluster" />
-
-    <Button
-        android:id="@+id/opt_cpu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginStart="24dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/str_cpu"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/img_cluster"
-        app:layout_constraintStart_toEndOf="@+id/img_cluster" />
-
-    <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/fab_menu"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@android:color/transparent"
-        android:tag="en"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:menu_colorNormal="@android:color/transparent"
-        app:menu_colorPressed="@android:color/transparent"
-        app:menu_icon="@mipmap/locale_en_56dp">
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab_item_1"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:scaleType="fitCenter"
-            android:src="@mipmap/locale_es_56dp"
-            android:tag="es" />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab_item_2"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:scaleType="fitCenter"
-            android:src="@mipmap/locale_el_56dp"
-            android:tag="el" />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab_item_3"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:scaleType="fitCenter"
-            android:src="@mipmap/locale_in_56dp"
-            android:tag="in" />
-
-    </com.github.clans.fab.FloatingActionMenu>
-
     <com.wonderkiln.blurkit.BlurLayout
-        android:id="@+id/blurLayout"
+        android:id="@+id/bgBlurLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:elevation="2dp"
-        android:visibility="gone"
-        app:blurRadius="1"
+        android:visibility="visible"
+        app:blurRadius="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.constraint.ConstraintLayout
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:context="com.uoe.epcc.scc.epccscccluster.MainActivity">
 
-            <include
-                android:id="@+id/frg_detail_view"
-                layout="@layout/detail_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+            <ImageView
+                android:id="@+id/img_cluster"
+                android:layout_width="175dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <include
-                android:id="@+id/frg_info_view"
-                layout="@layout/info_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:visibility="gone"
+            <Button
+                android:id="@+id/opt_team"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="72dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/str_the_team"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/img_cluster"
+                app:layout_constraintEnd_toEndOf="@+id/img_cluster"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="@+id/img_cluster" />
+
+            <Button
+                android:id="@+id/opt_chassis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="72dp"
+                android:text="@string/str_chassis"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/img_cluster"
+                app:layout_constraintStart_toStartOf="@+id/img_cluster"
+                app:layout_constraintTop_toBottomOf="@+id/img_cluster" />
+
+            <Button
+                android:id="@+id/opt_cooling"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/str_cooling"
+                android:textAlignment="textEnd"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/img_cluster"
+                app:layout_constraintTop_toBottomOf="@+id/img_cluster" />
+
+            <Button
+                android:id="@+id/opt_network"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/str_network"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/img_cluster"
+                app:layout_constraintTop_toBottomOf="@+id/img_cluster" />
+
+            <Button
+                android:id="@+id/opt_storage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/str_storage"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/img_cluster"
+                app:layout_constraintEnd_toStartOf="@+id/img_cluster"
+                app:layout_constraintTop_toTopOf="@+id/img_cluster"
+                app:layout_constraintVertical_bias="0.502" />
+
+            <Button
+                android:id="@+id/opt_gpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/str_gpu"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/img_cluster"
+                app:layout_constraintStart_toEndOf="@+id/img_cluster"
+                app:layout_constraintTop_toTopOf="@+id/img_cluster" />
+
+            <Button
+                android:id="@+id/opt_memory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/str_memory"
+                android:textAlignment="textEnd"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                app:layout_constraintBottom_toTopOf="@+id/img_cluster"
+                app:layout_constraintEnd_toStartOf="@+id/img_cluster" />
+
+            <Button
+                android:id="@+id/opt_cpu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:layout_marginStart="24dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/str_cpu"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                app:layout_constraintBottom_toTopOf="@+id/img_cluster"
+                app:layout_constraintStart_toEndOf="@+id/img_cluster" />
+
+            <com.github.clans.fab.FloatingActionMenu
+                android:id="@+id/fab_menu"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@android:color/transparent"
+                android:tag="en"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:menu_colorNormal="@android:color/transparent"
+                app:menu_colorPressed="@android:color/transparent"
+                app:menu_icon="@mipmap/locale_en_56dp">
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_item_1"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/locale_es_56dp"
+                    android:tag="es" />
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_item_2"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/locale_el_56dp"
+                    android:tag="el" />
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_item_3"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/locale_in_56dp"
+                    android:tag="in" />
+
+            </com.github.clans.fab.FloatingActionMenu>
+
+            <com.wonderkiln.blurkit.BlurLayout
+                android:id="@+id/blurLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:elevation="2dp"
+                android:visibility="gone"
+                app:blurRadius="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <include
+                        android:id="@+id/frg_detail_view"
+                        layout="@layout/detail_view"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <include
+                        android:id="@+id/frg_info_view"
+                        layout="@layout/info_view"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+            </com.wonderkiln.blurkit.BlurLayout>
 
         </android.support.constraint.ConstraintLayout>
+
     </com.wonderkiln.blurkit.BlurLayout>
 
 

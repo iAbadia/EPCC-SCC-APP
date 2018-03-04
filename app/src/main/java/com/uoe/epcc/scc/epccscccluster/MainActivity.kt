@@ -16,14 +16,7 @@ import kotlinx.android.synthetic.main.info_view.view.*
 import java.util.*
 import android.animation.ValueAnimator
 import android.view.ViewGroup
-
-
-
-
-
-
-
-
+import com.wonderkiln.blurkit.BlurKit
 
 
 class MainActivity : AppCompatActivity() {
@@ -42,6 +35,10 @@ class MainActivity : AppCompatActivity() {
 
         // Load server image
         Glide.with(this).load(R.drawable.sample_server).into(img_cluster)
+
+        // Blur BG
+        //BlurKit.init(this)
+        //BlurKit.getInstance().blur(bg_img, 3)
 
         // Enter immersive mode
         hideSystemUI()

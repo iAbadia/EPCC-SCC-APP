@@ -12,7 +12,8 @@
     <color name="epccDarkBlue">#002f4f</color>
 
     <color name="darkBg">#1A1A1A</color>
-    <color name="lightBg">#F9F9F9</color>
+    <color name="lightBg">#DDDDDD</color>
+    <color name="buttonColor">#FFFFFF</color>
 
     <color name="bg">@color/lightBg</color>
 
