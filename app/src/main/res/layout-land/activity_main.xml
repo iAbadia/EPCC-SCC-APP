@@ -180,6 +180,7 @@
         android:id="@+id/blurLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:elevation="2dp"
         android:visibility="gone"
         app:blurRadius="1"
         app:layout_constraintBottom_toBottomOf="parent"
