@@ -33,6 +33,9 @@ class MainActivity : AppCompatActivity() {
         // Load Lang FAV
         loadFAV()
 
+        // Setup share FAV
+        setUpShareFAV()
+
         // Load Video
         val video_path = "android.resource://" + packageName + "/" + R.raw.bg_blur
         val video_uri = Uri.parse(video_path)
@@ -150,6 +153,52 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
+     * Set up share FAV
+     * */
+    private fun setUpShareFAV() {
+        fab_share_facebook.setOnClickListener { showShare(SocialN.FACEBOOK) }
+        fab_share_instagram.setOnClickListener { showShare(SocialN.INSTAGRAM) }
+        fab_share_twitter.setOnClickListener { showShare(SocialN.TWITTER) }
+
+        share_qr.setOnClickListener { hideShare() }
+    }
+
+    /**
+     * Show Share QR
+     * */
+    private fun showShare(socialn: SocialN) {
+        // Hide options
+        hideAllOptions()
+
+        // Load right QR
+        val social_qr = when(socialn) {
+            SocialN.TWITTER -> R.drawable.qr_twitter
+            SocialN.INSTAGRAM -> R.drawable.qr_instagram
+            SocialN.FACEBOOK -> R.drawable.qr_facebook
+        }
+
+        // Make QR visible
+        share_qr.setImageResource(social_qr)
+
+        // Make transparent
+        share_qr.alpha = 0F
+
+        // Enable
+        share_qr.visibility = View.VISIBLE
+
+        // Animate alpha
+        share_qr.animate().alpha(1F)
+    }
+
+    /**
+     * Hide share QR
+     * */
+    private fun hideShare() {
+        share_qr.animate().alpha(0F).withEndAction { share_qr.visibility = View.GONE }
+        showAllOptions()
+    }
+
+    /**
      * Show detail for given Option
      * */
     private fun showDetail(opt: Option) {
@@ -256,6 +305,7 @@ class MainActivity : AppCompatActivity() {
 
         // GONE lang FAV
         fab_menu.animate().alpha(0F).withEndAction { fab_menu.visibility = View.GONE }
+        fab_menu_share.animate().alpha(0F).withEndAction { fab_menu_share.visibility = View.GONE }
 
     }
 
@@ -277,6 +327,7 @@ class MainActivity : AppCompatActivity() {
 
         // Disable lang buttons
         fab_menu.visibility = View.VISIBLE
+        fab_menu_share.visibility = View.VISIBLE
 
         opt_team.animate().alpha(1F)
         opt_cpu.animate().alpha(1F)
@@ -290,6 +341,7 @@ class MainActivity : AppCompatActivity() {
         img_cluster.animate().alpha(1F)
 
         fab_menu.animate().alpha(1F)
+        fab_menu_share.animate().alpha(1F)
 
 
     }
@@ -369,4 +421,5 @@ class MainActivity : AppCompatActivity() {
 
     enum class Option { TEAM, CPU, GPU, NETWORK, CHASSIS, COOLING, STORAGE, MEMORY }
     enum class Language(val lang: String) { EN("en"), ES("es"), IN("in"), EL("el") }
+    enum class SocialN {TWITTER, INSTAGRAM, FACEBOOK}
 }
