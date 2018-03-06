@@ -198,6 +198,46 @@
 
     </com.github.clans.fab.FloatingActionMenu>
 
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fab_menu_share"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@android:color/transparent"
+        android:tag="en"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu_colorNormal="@android:color/transparent"
+        app:menu_colorPressed="@android:color/transparent"
+        app:menu_icon="@mipmap/ic_share">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_share_instagram"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_share_instagram"
+            android:tag="es" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_share_twitter"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_share_twitter"
+            android:tag="el" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_share_facebook"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_share_facebook"
+            android:tag="in" />
+
+    </com.github.clans.fab.FloatingActionMenu>
+
     <include
         android:id="@+id/frg_detail_view"
         layout="@layout/detail_view"
