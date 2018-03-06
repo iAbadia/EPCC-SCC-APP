@@ -14,9 +14,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.detail_view.*
 import kotlinx.android.synthetic.main.info_view.view.*
 import java.util.*
-import android.animation.ValueAnimator
-import android.view.ViewGroup
-import com.wonderkiln.blurkit.BlurKit
+import android.net.Uri
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -33,12 +33,15 @@ class MainActivity : AppCompatActivity() {
         // Load Lang FAV
         loadFAV()
 
+        // Load Video
+        val video_path = "android.resource://" + packageName + "/" + R.raw.bg_blur
+        val video_uri = Uri.parse(video_path)
+        bg_video_view.setVideoURI(video_uri)
+        bg_video_view.setOnPreparedListener { mp -> mp.isLooping = true }
+        bg_video_view.start()
+
         // Load server image
         Glide.with(this).load(R.drawable.sample_server).into(img_cluster)
-
-        // Blur BG
-        //BlurKit.init(this)
-        //BlurKit.getInstance().blur(bg_img, 3)
 
         // Enter immersive mode
         hideSystemUI()
@@ -151,17 +154,7 @@ class MainActivity : AppCompatActivity() {
      * */
     private fun showDetail(opt: Option) {
         // Hide all buttons
-        //hideAllOptions()
-
-        // Blur BG animate
-        val va = ValueAnimator.ofInt(1, 12)
-        val mDuration = 250 //in millis
-        va.duration = mDuration.toLong()
-        va.addUpdateListener { animation -> blurLayout.setBlurRadius(animation.animatedValue as Int) }
-        va.repeatCount = 0
-        va.start()
-        // Activate blur layer
-        blurLayout.visibility = View.VISIBLE
+        hideAllOptions()
 
         // Get screen size
         val display = windowManager.defaultDisplay
@@ -237,42 +230,33 @@ class MainActivity : AppCompatActivity() {
         Log.i("OnClick", "Screen size is: x = ${size.x} and y = ${size.y}")
 
         // Animate slide out
-        //frg_info_view.animate().translationX((size.x * 2 / 5 + size.x % 5).toFloat())//.withEndAction { frg_info_view.visibility = View.GONE }
-        //frg_detail_view.animate().translationX(-(size.x * 3 / 5).toFloat())//.withEndAction { frg_detail_view.visibility = View.GONE }
-        frg_info_view.animate().translationX((size.x * 2 / 5 + size.x % 5).toFloat())
-        frg_detail_view.animate().translationX(-(size.x * 3 / 5).toFloat())
+        frg_info_view.animate().translationX((size.x * 2 / 5 + size.x % 5).toFloat()).withEndAction { frg_info_view.visibility = View.INVISIBLE }
+        frg_detail_view.animate().translationX(-(size.x * 3 / 5).toFloat()).withEndAction { frg_detail_view.visibility = View.INVISIBLE }
 
         // Disable overlay
-        //frg_info_view.visibility = View.GONE
-        //frg_detail_view.visibility = View.GONE
-        //showAllOptions()
-
-        // Disable blur
-        val va = ValueAnimator.ofInt(12, 1)
-        val mDuration = 250 //in millis
-        va.duration = mDuration.toLong()
-        va.addUpdateListener {
-            animation -> blurLayout.setBlurRadius(animation.animatedValue as Int)
-                         if(animation.animatedValue as Int == 1){ blurLayout.visibility = View.GONE }
-        }
-        va.repeatCount = 0
-        va.start()
+        showAllOptions()
     }
 
     /**
      * Hide all Options buttons
      * */
     private fun hideAllOptions() {
-        opt_team.visibility = View.GONE
-        opt_cpu.visibility = View.GONE
-        opt_gpu.visibility = View.GONE
-        opt_network.visibility = View.GONE
-        opt_chassis.visibility = View.GONE
-        opt_cooling.visibility = View.GONE
-        opt_storage.visibility = View.GONE
-        opt_memory.visibility = View.GONE
+        // GONE options
+        opt_team.animate().alpha(0F).withEndAction { opt_team.visibility = View.GONE }
+        opt_cpu.animate().alpha(0F).withEndAction { opt_cpu.visibility = View.GONE }
+        opt_gpu.animate().alpha(0F).withEndAction { opt_gpu.visibility = View.GONE }
+        opt_network.animate().alpha(0F).withEndAction { opt_network.visibility = View.GONE }
+        opt_chassis.animate().alpha(0F).withEndAction { opt_chassis.visibility = View.GONE }
+        opt_cooling.animate().alpha(0F).withEndAction { opt_cooling.visibility = View.GONE }
+        opt_storage.animate().alpha(0F).withEndAction { opt_storage.visibility = View.GONE }
+        opt_memory.animate().alpha(0F).withEndAction { opt_memory.visibility = View.GONE }
 
-        fab_menu.visibility = View.GONE
+        // INVISIBLE cluster image
+        img_cluster.animate().alpha(0F).withEndAction { img_cluster.visibility = View.INVISIBLE }
+
+        // GONE lang FAV
+        fab_menu.animate().alpha(0F).withEndAction { fab_menu.visibility = View.GONE }
+
     }
 
     /**
@@ -289,8 +273,25 @@ class MainActivity : AppCompatActivity() {
         opt_storage.visibility = View.VISIBLE
         opt_memory.visibility = View.VISIBLE
 
+        img_cluster.visibility = View.VISIBLE
+
         // Disable lang buttons
         fab_menu.visibility = View.VISIBLE
+
+        opt_team.animate().alpha(1F)
+        opt_cpu.animate().alpha(1F)
+        opt_gpu.animate().alpha(1F)
+        opt_network.animate().alpha(1F)
+        opt_chassis.animate().alpha(1F)
+        opt_cooling.animate().alpha(1F)
+        opt_storage.animate().alpha(1F)
+        opt_memory.animate().alpha(1F)
+
+        img_cluster.animate().alpha(1F)
+
+        fab_menu.animate().alpha(1F)
+
+
     }
 
     /**
