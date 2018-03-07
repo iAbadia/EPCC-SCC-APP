@@ -233,8 +233,8 @@ class MainActivity : AppCompatActivity() {
         // Load DETAIL Image
         when(opt) {
             Option.TEAM -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
-            Option.CPU -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
-            Option.GPU -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
+            Option.CPU -> Glide.with(this).load(R.drawable.detail_cpu).into(detail_image)
+            Option.GPU -> Glide.with(this).load(R.drawable.detail_gpu).into(detail_image)
             Option.NETWORK -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
             Option.CHASSIS -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
             Option.COOLING -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
