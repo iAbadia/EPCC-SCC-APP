@@ -45,5 +45,5 @@ dependencies {
         exclude group: "com.android.support"
     }
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
-    compile 'com.wonderkiln:blurkit:1.0.0'
+    compile 'com.google.android.exoplayer:exoplayer:2.7.0'
 }

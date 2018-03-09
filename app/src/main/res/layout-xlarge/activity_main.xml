@@ -19,9 +19,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
+        android:id="@+id/video_cover"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@android:color/transparent"
+        android:background="@color/bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

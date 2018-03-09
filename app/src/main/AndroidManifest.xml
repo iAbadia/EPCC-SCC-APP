@@ -13,7 +13,12 @@
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="landscape">
-
+        </activity>
+        <activity
+            android:name=".SplashScreen"
+            android:theme="@style/SplashTheme"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

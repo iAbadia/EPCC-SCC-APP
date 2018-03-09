@@ -1,5 +1,6 @@
 package com.uoe.epcc.scc.epccscccluster
 
+import android.animation.ArgbEvaluator
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.res.Configuration
@@ -15,6 +16,9 @@ import kotlinx.android.synthetic.main.detail_view.*
 import kotlinx.android.synthetic.main.info_view.view.*
 import java.util.*
 import android.net.Uri
+import android.support.v4.content.res.ResourcesCompat
+import android.animation.ValueAnimator
+import android.animation.ValueAnimator.AnimatorUpdateListener
 
 
 
@@ -30,18 +34,14 @@ class MainActivity : AppCompatActivity() {
         // Load layout
         setContentView(R.layout.activity_main)
 
+        // Load Video
+        loadBgVideo()
+
         // Load Lang FAV
         loadFAV()
 
         // Setup share FAV
         setUpShareFAV()
-
-        // Load Video
-        val video_path = "android.resource://" + packageName + "/" + R.raw.bg_blur
-        val video_uri = Uri.parse(video_path)
-        bg_video_view.setVideoURI(video_uri)
-        bg_video_view.setOnPreparedListener { mp -> mp.isLooping = true }
-        bg_video_view.start()
 
         // Load server image
         Glide.with(this).load(R.drawable.sample_server).into(img_cluster)
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         opt_memory.setOnClickListener { showDetail(Option.MEMORY) }
 
         // Set onClick for Detail view
-        frg_detail_view.setOnClickListener {hideDetail()}
+        frg_detail_view.setOnClickListener { hideDetail() }
 
         // Set onClick for Lang buttons
         fab_item_1.setOnClickListener { updateFAB(it as FloatingActionButton) }
@@ -75,6 +75,17 @@ class MainActivity : AppCompatActivity() {
         loadLocale()
         // Enter immersive mode
         hideSystemUI()
+
+        //Load video
+        loadBgVideo()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        // Set videocover to R.color.bg so when resumed there's
+        // no black bg on VideoView
+        video_cover.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.bg, null))
     }
 
     /**
@@ -89,6 +100,30 @@ class MainActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_FULLSCREEN
                 or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+    }
+
+    /**
+     * Load background animation video
+     * */
+    private fun loadBgVideo() {
+        val video_path = "android.resource://" + packageName + "/" + R.raw.bg_blur
+        val video_uri = Uri.parse(video_path)
+        bg_video_view.setVideoURI(video_uri)
+
+        // Set cover color before setting up videoview
+        video_cover.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.bg, null))
+        // When ready, animate cover color to transparent
+        bg_video_view.setOnPreparedListener {
+            mp -> mp.isLooping = true
+            // Animate color transition
+            val colorFrom = ResourcesCompat.getColor(resources, R.color.bg, null)
+            val colorTo = ResourcesCompat.getColor(resources, android.R.color.transparent, null)
+            val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), colorFrom, colorTo)
+            colorAnimation.duration = 2500 // milliseconds
+            colorAnimation.addUpdateListener { animator -> video_cover.setBackgroundColor(animator.animatedValue as Int) }
+            colorAnimation.start()
+        }
+        bg_video_view.start()
     }
 
     /**
@@ -171,7 +206,7 @@ class MainActivity : AppCompatActivity() {
         hideAllOptions()
 
         // Load right QR
-        val social_qr = when(socialn) {
+        val social_qr = when (socialn) {
             SocialN.TWITTER -> R.drawable.qr_twitter
             SocialN.INSTAGRAM -> R.drawable.qr_instagram
             SocialN.FACEBOOK -> R.drawable.qr_facebook
@@ -231,7 +266,7 @@ class MainActivity : AppCompatActivity() {
 
 
         // Load DETAIL Image
-        when(opt) {
+        when (opt) {
             Option.TEAM -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
             Option.CPU -> Glide.with(this).load(R.drawable.detail_cpu).into(detail_image)
             Option.GPU -> Glide.with(this).load(R.drawable.detail_gpu).into(detail_image)
@@ -244,7 +279,7 @@ class MainActivity : AppCompatActivity() {
 
 
         // Load INFO Title
-        frg_info_view.txt_info_title.text = when(opt) {
+        frg_info_view.txt_info_title.text = when (opt) {
             Option.TEAM -> resources.getText(R.string.str_the_team)
             Option.CPU -> resources.getString(R.string.str_cpu)
             Option.GPU -> resources.getString(R.string.str_gpu)
@@ -256,7 +291,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Load INFO Description
-        frg_info_view.txt_info_description.text = when(opt) {
+        frg_info_view.txt_info_description.text = when (opt) {
             Option.TEAM -> resources.getText(R.string.info_team)
             Option.CPU -> resources.getString(R.string.info_cpu)
             Option.GPU -> resources.getString(R.string.info_gpu)
@@ -421,5 +456,5 @@ class MainActivity : AppCompatActivity() {
 
     enum class Option { TEAM, CPU, GPU, NETWORK, CHASSIS, COOLING, STORAGE, MEMORY }
     enum class Language(val lang: String) { EN("en"), ES("es"), IN("in"), EL("el") }
-    enum class SocialN {TWITTER, INSTAGRAM, FACEBOOK}
+    enum class SocialN { TWITTER, INSTAGRAM, FACEBOOK }
 }
