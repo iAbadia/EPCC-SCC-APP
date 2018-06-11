@@ -21,8 +21,6 @@ import android.animation.ValueAnimator
 import android.animation.ValueAnimator.AnimatorUpdateListener
 
 
-
-
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -113,8 +111,8 @@ class MainActivity : AppCompatActivity() {
         // Set cover color before setting up videoview
         video_cover.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.bg, null))
         // When ready, animate cover color to transparent
-        bg_video_view.setOnPreparedListener {
-            mp -> mp.isLooping = true
+        bg_video_view.setOnPreparedListener { mp ->
+            mp.isLooping = true
             // Animate color transition
             val colorFrom = ResourcesCompat.getColor(resources, R.color.bg, null)
             val colorTo = ResourcesCompat.getColor(resources, android.R.color.transparent, null)
@@ -270,10 +268,10 @@ class MainActivity : AppCompatActivity() {
             Option.TEAM -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
             Option.CPU -> Glide.with(this).load(R.drawable.detail_cpu).into(detail_image)
             Option.GPU -> Glide.with(this).load(R.drawable.detail_gpu).into(detail_image)
-            Option.NETWORK -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
+            Option.NETWORK -> Glide.with(this).load(R.drawable.detail_network).into(detail_image)
             Option.CHASSIS -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
             Option.COOLING -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
-            Option.STORAGE -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
+            Option.STORAGE -> Glide.with(this).load(R.drawable.detail_storage).into(detail_image)
             Option.MEMORY -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
         }
 
