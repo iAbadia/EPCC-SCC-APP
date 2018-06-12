@@ -3,10 +3,11 @@
     <string name="app_name">EPCC SCC Cluster</string>
     <string name="str_the_team">Η ΟΜΑΔΑ</string>
     <string name="str_network">ΔΙΚΤΥΟ</string>
-    <string name="str_cooling">ΨΥΞΗ</string>
     <string name="str_chassis">ΣΑΣΙ</string>
     <string name="str_storage">"ΑΠΟΘΗΚΕΥΣΗ "</string>
     <string name="str_gpu">GPU</string>
     <string name="str_memory">ΜΝΗΜΗ</string>
     <string name="str_cpu">CPU</string>
+    <string name="str_software">λογισμικό</string>
+    <string name="info_software">SOFTWARE</string>
 </resources>

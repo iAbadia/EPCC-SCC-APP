@@ -4,7 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="str_the_team">THE TEAM</string>
     <string name="str_chassis">CHASSIS</string>
-    <string name="str_cooling">COOLING</string>
+    <string name="str_software">SOFTWARE</string>
     <string name="str_network">NETWORK</string>
     <string name="str_storage">STORAGE</string>
     <string name="str_gpu">GPU</string>
@@ -18,4 +18,5 @@
     <string name="info_cooling">COOLING</string>
     <string name="info_storage">STORAGE</string>
     <string name="info_memory">MEMORY</string>
+    <string name="info_software">SOFTWARE</string>
 </resources>

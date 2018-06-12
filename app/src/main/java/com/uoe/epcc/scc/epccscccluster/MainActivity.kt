@@ -1,7 +1,6 @@
 package com.uoe.epcc.scc.epccscccluster
 
 import android.animation.ArgbEvaluator
-import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Point
@@ -18,7 +17,6 @@ import java.util.*
 import android.net.Uri
 import android.support.v4.content.res.ResourcesCompat
 import android.animation.ValueAnimator
-import android.animation.ValueAnimator.AnimatorUpdateListener
 
 
 class MainActivity : AppCompatActivity() {
@@ -53,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         opt_gpu.setOnClickListener { showDetail(Option.GPU) }
         opt_network.setOnClickListener { showDetail(Option.NETWORK) }
         opt_chassis.setOnClickListener { showDetail(Option.CHASSIS) }
-        opt_cooling.setOnClickListener { showDetail(Option.COOLING) }
+        opt_software.setOnClickListener { showDetail(Option.SOFTWARE) }
         opt_storage.setOnClickListener { showDetail(Option.STORAGE) }
         opt_memory.setOnClickListener { showDetail(Option.MEMORY) }
 
@@ -269,10 +267,10 @@ class MainActivity : AppCompatActivity() {
             Option.CPU -> Glide.with(this).load(R.drawable.detail_cpu).into(detail_image)
             Option.GPU -> Glide.with(this).load(R.drawable.detail_gpu).into(detail_image)
             Option.NETWORK -> Glide.with(this).load(R.drawable.detail_network).into(detail_image)
-            Option.CHASSIS -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
-            Option.COOLING -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
+            Option.CHASSIS -> Glide.with(this).load(R.drawable.detail_chassis).into(detail_image)
+            Option.SOFTWARE -> Glide.with(this).load(R.drawable.detail_software).into(detail_image)
             Option.STORAGE -> Glide.with(this).load(R.drawable.detail_storage).into(detail_image)
-            Option.MEMORY -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
+            Option.MEMORY -> Glide.with(this).load(R.drawable.detail_memory).into(detail_image)
         }
 
 
@@ -283,7 +281,7 @@ class MainActivity : AppCompatActivity() {
             Option.GPU -> resources.getString(R.string.str_gpu)
             Option.NETWORK -> resources.getString(R.string.str_network)
             Option.CHASSIS -> resources.getString(R.string.str_chassis)
-            Option.COOLING -> resources.getString(R.string.str_cooling)
+            Option.SOFTWARE -> resources.getString(R.string.str_software)
             Option.STORAGE -> resources.getString(R.string.str_storage)
             Option.MEMORY -> resources.getString(R.string.str_memory)
         }
@@ -295,7 +293,7 @@ class MainActivity : AppCompatActivity() {
             Option.GPU -> resources.getString(R.string.info_gpu)
             Option.NETWORK -> resources.getString(R.string.info_network)
             Option.CHASSIS -> resources.getString(R.string.info_chassis)
-            Option.COOLING -> resources.getString(R.string.info_cooling)
+            Option.SOFTWARE -> resources.getString(R.string.info_software)
             Option.STORAGE -> resources.getString(R.string.info_storage)
             Option.MEMORY -> resources.getString(R.string.info_memory)
         }
@@ -329,7 +327,7 @@ class MainActivity : AppCompatActivity() {
         opt_gpu.animate().alpha(0F).withEndAction { opt_gpu.visibility = View.GONE }
         opt_network.animate().alpha(0F).withEndAction { opt_network.visibility = View.GONE }
         opt_chassis.animate().alpha(0F).withEndAction { opt_chassis.visibility = View.GONE }
-        opt_cooling.animate().alpha(0F).withEndAction { opt_cooling.visibility = View.GONE }
+        opt_software.animate().alpha(0F).withEndAction { opt_software.visibility = View.GONE }
         opt_storage.animate().alpha(0F).withEndAction { opt_storage.visibility = View.GONE }
         opt_memory.animate().alpha(0F).withEndAction { opt_memory.visibility = View.GONE }
 
@@ -352,7 +350,7 @@ class MainActivity : AppCompatActivity() {
         opt_gpu.visibility = View.VISIBLE
         opt_network.visibility = View.VISIBLE
         opt_chassis.visibility = View.VISIBLE
-        opt_cooling.visibility = View.VISIBLE
+        opt_software.visibility = View.VISIBLE
         opt_storage.visibility = View.VISIBLE
         opt_memory.visibility = View.VISIBLE
 
@@ -367,7 +365,7 @@ class MainActivity : AppCompatActivity() {
         opt_gpu.animate().alpha(1F)
         opt_network.animate().alpha(1F)
         opt_chassis.animate().alpha(1F)
-        opt_cooling.animate().alpha(1F)
+        opt_software.animate().alpha(1F)
         opt_storage.animate().alpha(1F)
         opt_memory.animate().alpha(1F)
 
@@ -452,7 +450,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    enum class Option { TEAM, CPU, GPU, NETWORK, CHASSIS, COOLING, STORAGE, MEMORY }
+    enum class Option { TEAM, CPU, GPU, NETWORK, CHASSIS, SOFTWARE, STORAGE, MEMORY }
     enum class Language(val lang: String) { EN("en"), ES("es"), IN("in"), EL("el") }
     enum class SocialN { TWITTER, INSTAGRAM, FACEBOOK }
 }
