@@ -10,6 +10,8 @@
     <color name="epccOrange">#f25d00</color>
     <color name="epccBlue">#004886</color>
     <color name="epccDarkBlue">#002f4f</color>
+    <color name="epccNewBlue">#0a2a49</color>
+    <color name="epccNewPink">#d91c5c</color>
 
     <color name="darkBg">#1A1A1A</color>
     <color name="lightBg">#DDDDDD</color>

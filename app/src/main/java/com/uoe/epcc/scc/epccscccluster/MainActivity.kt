@@ -21,8 +21,13 @@ import android.animation.ValueAnimator
 
 class MainActivity : AppCompatActivity() {
 
+    var actState: ActState = ActState.INIT
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Activity state
+        actState = ActState.INIT
 
         // Load locale
         loadLocale()
@@ -40,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         setUpShareFAV()
 
         // Load server image
-        Glide.with(this).load(R.drawable.sample_server).into(img_cluster)
+        Glide.with(this).load(R.drawable.teamepcc_logo_alt).into(img_cluster)
 
         // Enter immersive mode
         hideSystemUI()
@@ -63,6 +68,16 @@ class MainActivity : AppCompatActivity() {
         fab_item_2.setOnClickListener { updateFAB(it as FloatingActionButton) }
         fab_item_3.setOnClickListener { updateFAB(it as FloatingActionButton) }
 
+    }
+
+    override fun onBackPressed() {
+        if (actState == ActState.INIT){
+            super.onBackPressed()
+        } else if (actState == ActState.INFO) {
+            hideDetail()
+        } else if (actState == ActState.SOCIAL) {
+            hideShare()
+        }
     }
 
     override fun onResume() {
@@ -198,6 +213,9 @@ class MainActivity : AppCompatActivity() {
      * Show Share QR
      * */
     private fun showShare(socialn: SocialN) {
+        // Set state
+        actState = ActState.SOCIAL
+
         // Hide options
         hideAllOptions()
 
@@ -227,12 +245,17 @@ class MainActivity : AppCompatActivity() {
     private fun hideShare() {
         share_qr.animate().alpha(0F).withEndAction { share_qr.visibility = View.GONE }
         showAllOptions()
+        // Set state
+        actState = ActState.INIT
     }
 
     /**
      * Show detail for given Option
      * */
     private fun showDetail(opt: Option) {
+        // Set state
+        actState = ActState.INFO
+
         // Hide all buttons
         hideAllOptions()
 
@@ -289,13 +312,13 @@ class MainActivity : AppCompatActivity() {
         // Load INFO Description
         frg_info_view.txt_info_description.text = when (opt) {
             Option.TEAM -> resources.getText(R.string.info_team)
-            Option.CPU -> resources.getString(R.string.info_cpu)
-            Option.GPU -> resources.getString(R.string.info_gpu)
-            Option.NETWORK -> resources.getString(R.string.info_network)
-            Option.CHASSIS -> resources.getString(R.string.info_chassis)
-            Option.SOFTWARE -> resources.getString(R.string.info_software)
-            Option.STORAGE -> resources.getString(R.string.info_storage)
-            Option.MEMORY -> resources.getString(R.string.info_memory)
+            Option.CPU -> resources.getText(R.string.info_cpu)
+            Option.GPU -> resources.getText(R.string.info_gpu)
+            Option.NETWORK -> resources.getText(R.string.info_network)
+            Option.CHASSIS -> resources.getText(R.string.info_chassis)
+            Option.SOFTWARE -> resources.getText(R.string.info_software)
+            Option.STORAGE -> resources.getText(R.string.info_storage)
+            Option.MEMORY -> resources.getText(R.string.info_memory)
         }
     }
 
@@ -315,6 +338,9 @@ class MainActivity : AppCompatActivity() {
 
         // Disable overlay
         showAllOptions()
+
+        // Set state
+        actState = ActState.INIT
     }
 
     /**
@@ -453,4 +479,5 @@ class MainActivity : AppCompatActivity() {
     enum class Option { TEAM, CPU, GPU, NETWORK, CHASSIS, SOFTWARE, STORAGE, MEMORY }
     enum class Language(val lang: String) { EN("en"), ES("es"), IN("in"), EL("el") }
     enum class SocialN { TWITTER, INSTAGRAM, FACEBOOK }
+    enum class ActState{INIT, SOCIAL, INFO}
 }
