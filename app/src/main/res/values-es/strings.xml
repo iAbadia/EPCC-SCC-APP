@@ -6,7 +6,7 @@
     <string name="str_gpu">GPU</string>
     <string name="str_memory">MEMORIA</string>
     <string name="str_network">RED</string>
-    <string name="str_storage">ALMACENAMIENTO</string>
+    <string name="str_storage">DISCO</string>
     <string name="str_the_team">EL EQUIPO</string>
     <string name="str_software">SOFTWARE</string>
     <string name="info_software">SOFTWARE</string>

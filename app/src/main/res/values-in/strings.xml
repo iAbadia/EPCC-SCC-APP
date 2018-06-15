@@ -8,6 +8,6 @@
     <string name="str_gpu">KARTU GRAFIS</string>
     <string name="str_memory">MEMORI</string>
     <string name="str_cpu">CPU</string>
-    <string name="str_software">PERANGKAT LUNAK</string>
+    <string name="str_software">PERANGKAT\nLUNAK</string>
     <string name="info_software">SOFTWARE</string>
 </resources>
