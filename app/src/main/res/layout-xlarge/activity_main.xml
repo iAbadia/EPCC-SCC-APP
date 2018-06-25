@@ -292,6 +292,14 @@
         app:menu_icon="@mipmap/ic_share">
 
         <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_share_favorite"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_share_favorite"
+            android:tag="es" />
+
+        <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_share_instagram"
             android:layout_width="56dp"
             android:layout_height="56dp"

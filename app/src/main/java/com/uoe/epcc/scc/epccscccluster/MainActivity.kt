@@ -205,6 +205,7 @@ class MainActivity : AppCompatActivity() {
         fab_share_facebook.setOnClickListener { showShare(SocialN.FACEBOOK) }
         fab_share_instagram.setOnClickListener { showShare(SocialN.INSTAGRAM) }
         fab_share_twitter.setOnClickListener { showShare(SocialN.TWITTER) }
+        fab_share_favorite.setOnClickListener {showShare(SocialN.FAVORITE)}
 
         share_qr.setOnClickListener { hideShare() }
     }
@@ -224,6 +225,7 @@ class MainActivity : AppCompatActivity() {
             SocialN.TWITTER -> R.drawable.qr_twitter
             SocialN.INSTAGRAM -> R.drawable.qr_instagram
             SocialN.FACEBOOK -> R.drawable.qr_facebook
+            SocialN.FAVORITE -> R.drawable.qr_teamfavorite
         }
 
         // Make QR visible
@@ -287,7 +289,7 @@ class MainActivity : AppCompatActivity() {
         // Load DETAIL Image
         when (opt) {
             Option.TEAM -> Glide.with(this).load(R.drawable.detail_team).into(detail_image)
-            Option.CPU -> Glide.with(this).load(R.drawable.detail_cpu).into(detail_image)
+            Option.CPU -> Glide.with(this).load(R.drawable.detail_cpu_edit).into(detail_image)
             Option.GPU -> Glide.with(this).load(R.drawable.detail_gpu).into(detail_image)
             Option.NETWORK -> Glide.with(this).load(R.drawable.detail_network).into(detail_image)
             Option.CHASSIS -> Glide.with(this).load(R.drawable.detail_chassis).into(detail_image)
@@ -478,6 +480,6 @@ class MainActivity : AppCompatActivity() {
 
     enum class Option { TEAM, CPU, GPU, NETWORK, CHASSIS, SOFTWARE, STORAGE, MEMORY }
     enum class Language(val lang: String) { EN("en"), ES("es"), IN("in"), EL("el") }
-    enum class SocialN { TWITTER, INSTAGRAM, FACEBOOK }
+    enum class SocialN { TWITTER, INSTAGRAM, FACEBOOK, FAVORITE }
     enum class ActState{INIT, SOCIAL, INFO}
 }
